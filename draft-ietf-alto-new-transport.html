@@ -1077,11 +1077,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ALTO TIPS</td>
-<td class="right">February 2023</td>
+<td class="right">March 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schott, et al.</td>
-<td class="center">Expires 29 August 2023</td>
+<td class="center">Expires 3 September 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1094,12 +1094,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-alto-new-transport-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-02-25" class="published">25 February 2023</time>
+<time datetime="2023-03-02" class="published">2 March 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-08-29">29 August 2023</time></dd>
+<dd class="expires"><time datetime="2023-09-03">3 September 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1168,7 +1168,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 29 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 September 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1212,7 +1212,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-tips-overview" class="internal xref">TIPS Overview</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
-                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-basic-data-model-incrementa" class="internal xref">Basic Data Model: Incremental Representation State Transfer (iREST)</a></p>
+                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-basic-data-model-incrementa" class="internal xref">Basic Data Model: Incremental Representational State Transfer (iREST)</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.1">
                     <p id="section-toc.1-1.2.2.1.2.1.1"><a href="#section-2.1.1" class="auto internal xref">2.1.1</a>.  <a href="#name-irest-resource-location-sch" class="internal xref">iREST Resource Location Schema</a></p>
@@ -1399,10 +1399,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-application-alto-tipsparams" class="internal xref">application/alto-tipsparams+json Media Type</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3">
-                <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="auto internal xref">10.3</a>.  <a href="#name-application-alto-tipsgraphj" class="internal xref">application/alto-tipsgraph+json Media Type</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4">
-                <p id="section-toc.1-1.10.2.4.1"><a href="#section-10.4" class="auto internal xref">10.4</a>.  <a href="#name-application-alto-tipspushjs" class="internal xref">application/alto-tipspush+json Media Type</a></p>
+                <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="auto internal xref">10.3</a>.  <a href="#name-application-alto-tipsviewjs" class="internal xref">application/alto-tipsview+json Media Type</a></p>
 </li>
             </ul>
 </li>
@@ -1516,7 +1513,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div id="basic-data-model">
 <section id="section-2.1">
         <h3 id="name-basic-data-model-incrementa">
-<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-basic-data-model-incrementa" class="section-name selfRef">Basic Data Model: Incremental Representation State Transfer (iREST)</a>
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-basic-data-model-incrementa" class="section-name selfRef">Basic Data Model: Incremental Representational State Transfer (iREST)</a>
         </h3>
 <p id="section-2.1-1">For each resource (e.g., a cost map, network map), the incremental
       updates and snapshots can be represented using the following directed acyclic graph model,
@@ -1542,46 +1539,46 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <figure id="figure-1">
           <div class="alignLeft art-text artwork" id="section-2.1-4.1">
 <pre>
-                                          +======+
-                                          |  0   |
-                                          +======+
-                                          /   |  \
-                                ID0-101  /    |   |
-                                        /     |   |
-                                      |/__    |   |
-                                +======+      |   |
-                    tag: 1.1 -&gt; | 101  |      |   |
-                                +======+      |   |
-                                   ||         |   |
-                        ID101-102  ||         |   |
-                                   \/         |   |
-                                +======+      |   |
-                    tag: 1.5 -&gt; | 102  |      |   |
-                                +======+      |   |
-                                   ||         |   |
-                        ID102-103  ||  ID0-103|   |
-                                   \/         |   |
-                                +======+      /   |
-+---------------+   tag: 2.0 -&gt; | 103  |&lt;----/    |
-| Base Resource |  =====&gt;       +======+          |
-+---------------+                  ||             |
-                        ID103-104  ||             |
-                                   \/             |
-                                +======+          |
-                    tag: 3.0 -&gt; | 104  |          |
-                                +======+          |
-                                   ||             | ID0-105
-                        ID104-105  ||             |
-                                   \/             /
-                                +======+         /
-                    tag: 3.3 -&gt; | 105  |&lt;-------/
-                                +======+
-                                   ||
-                        ID105-106  ||
-                                   \/
-                                +======+
-                    tag: 3.7 -&gt; | 106  |
-                                +======+
+                                                  +======+
+                                                  |  0   |
+                                                  +======+
+                                                  /   |  \
+                                        ID0-101  /    |   |
+                                                /     |   |
+                                              |/__    |   |
+                                        +======+      |   |
+                   tag: 109783421097 -&gt; | 101  |      |   |
+                                        +======+      |   |
+                                           ||         |   |
+                                ID101-102  ||         |   |
+                                           \/         |   |
+                                        +======+      |   |
+                   tag: 123566431234 -&gt; | 102  |      |   |
+                                        +======+      |   |
+                                           ||         |   |
+                                ID102-103  ||  ID0-103|   |
+                                           \/         |   |
+                                        +======+      /   |
+                   tag: 123400881080 -&gt; | 103  |&lt;----/    |
++---------------+                       +======+          |
+| Base Resource |  =====&gt;                  ||             |
++---------------+               ID103-104  ||             |
+                                           \/             |
+                                        +======+          |
+                   tag: 123566452654 -&gt; | 104  |          |
+                                        +======+          |
+                                           ||             | ID0-105
+                                ID104-105  ||             |
+                                           \/             /
+                                        +======+         /
+                   tag: 123567838392 -&gt; | 105  |&lt;-------/
+                                        +======+
+                                           ||
+                                ID105-106  ||
+                                           \/
+                                        +======+
+                   tag: 123566470983 -&gt; | 106  |
+                                        +======+
 
           tag: denotes the version of the resource at node i
           ID###-###: denotes update item (op, data) to transition from
@@ -1621,6 +1618,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
                   105
               105
                   106
+          push           // server push metadata
+            ...
 
 
       Location -&gt; resource naming (ID assignment)
@@ -2002,8 +2001,8 @@ Client                                  TIPS
           <dd style="margin-left: 1.5em" id="section-3.2-5.4">
             <p id="section-3.2-5.4.1">The "support-server-push" field specifies whether the given TIPS
               supports server push.  If the "support-server-push"
-              field is "true", this TIPS will allow a client to start or stop server
-          push.<a href="#section-3.2-5.4.1" class="pilcrow">¶</a></p>
+              field is TRUE, this TIPS will allow a client to start or stop server
+          push. If the field is FALSE or not present, this TIPS does not provide server push.<a href="#section-3.2-5.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -2242,7 +2241,7 @@ Client                                  TIPS
           <dd class="break"></dd>
 <dt id="section-4.1-4.7">server-push: </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-4.8">
-            <p id="section-4.1-4.8.1">Set to TRUE if a client desires to receive updates via server push.<a href="#section-4.1-4.8.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-4.8.1">Set to TRUE if a client desires to receive updates via server push. If the value is FALSE or not present, the client does not accept server push updates.<a href="#section-4.1-4.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -2299,17 +2298,17 @@ Client                                  TIPS
 <dt id="section-4.2-4.3">tips-view-summary: </dt>
           <dd style="margin-left: 1.5em" id="section-4.2-4.4">
             <p id="section-4.2-4.4.1">Contains both an updates-graph-summary and an optional server-push boolean value
-              which is set to TRUE if the client indicated server push<a href="#section-4.2-4.4.1" class="pilcrow">¶</a></p>
-<p id="section-4.2-4.4.2">updates-graph-summary provides the starting sequence number of the updates graph
-              and the last sequence number (current available), along with
-              a recommended edge to consume.  How the server calculates the recommended edge
+              which is set to TRUE if and only if the client indicates server push.<a href="#section-4.2-4.4.1" class="pilcrow">¶</a></p>
+<p id="section-4.2-4.4.2">The updates-graph-summary field contains the starting sequence number (start-seq) of the updates graph
+              and the last sequence number (end-seq) that is currently available, along with
+              a recommended edge to consume (start-edge-rec).  How the server calculates the recommended edge
               depends on the implementation.  Ideally, if the client does not provide a version
               tag, the server should recommend the edge of the latest snapshot available.  If the client
               does provide a version tag, the server should calculate the cumulative size of the
               patch updates availabe from that version onward and compare it to the size of the
               complete resource snapshot.  If the snapshot is bigger, the server should
               recommend the first patch update edge starting from client's tagged version. Else,
-              the server should recommend the latest snapshot edge.  If the client indicated
+              the server should recommend the latest snapshot edge.  If the client indicates
               server push, the recommended edge will be the first content pushed.<a href="#section-4.2-4.4.2" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -2439,10 +2438,8 @@ Client                                  TIPS
       <h2 id="name-tips-view-metadata-director">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-tips-view-metadata-director" class="section-name selfRef">TIPS View Metadata Directory</a>
       </h2>
-<p id="section-5-1">An ALTO client can read the metadata directory of the updates graph
-        to understand its full contents beyond the intial summary provided (perhaps
-        to calculate a new shortest path to the end of the graph after not having
-        fetched for a period of time).<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">An ALTO client can read the metadata directory of the TIPS view
+        to understand its full contents beyond the intial summary provided.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div id="dir-req">
 <section id="section-5.1">
         <h3 id="name-request">
@@ -2450,18 +2447,26 @@ Client                                  TIPS
         </h3>
 <p id="section-5.1-1">An ALTO client requests the updates graph's metadata directory
         by sending an HTTP GET request with the media type
-        "application/alto-tipsgraph+json".  The GET request looks like:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+        "application/alto-tipsview+json".  The GET request looks like:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.1-2">
 <pre>
-    GET /&lt;tips-view-uri&gt;/ug
+    GET /&lt;tips-view-uri&gt;
 </pre><a href="#section-5.1-2" class="pilcrow">¶</a>
 </div>
-<p id="section-5.1-3">An ALTO client can also read the metadata of an individual edge
-        in the updates graph.  The HTTP method is a GET, and looks like:<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">An ALTO client can also read the metadata directory of just the
+        the updates graph (perhaps to calculate a new shortest path to the end of the graph after not having
+        fetched for a period of time).  The HTTP method is a GET, and looks like:<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.1-4">
 <pre>
-    GET /&lt;tips-view-uri&gt;/ug/meta/&lt;i&gt;/&lt;j&gt;
+    GET /&lt;tips-view-uri&gt;/ug
 </pre><a href="#section-5.1-4" class="pilcrow">¶</a>
+</div>
+<p id="section-5.1-5">An ALTO client can also read the metadata of an individual edge
+        in the updates graph.  The HTTP method is a GET, and looks like:<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.1-6">
+<pre>
+    GET /&lt;tips-view-uri&gt;/ug/meta/&lt;i&gt;/&lt;j&gt;
+</pre><a href="#section-5.1-6" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -2473,25 +2478,27 @@ Client                                  TIPS
 <p id="section-5.2-1">If the TIPS view is closed, the ALTO server MUST return an
              error HTTP message with status code 404 (Not Found) and media type
              "application/alto-error+json".<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">The response from the server, if no error, is the UpdatesGraph object indicated as "application/alto-tipsgraph+json" media type:<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">The response from the server, if no error, for the entire metadata directory of the TIPS view
+          is the UpdatesDirectory object indicated as "application/alto-tipsview+json" media type:<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.2-3">
 <pre>
     object {
       GraphDirMeta   meta;
       UpdatesGraph   updates-graph;
+      PushState      push-state;
     } UpdatesDirectory : ResponseEntityBase;
 
     object {
       ResourceID     resource-id;
       Tag            tag;
-    } GraphDirMeta
+    } GraphDirMeta;
 
     object-map {
-      StartSeq -&gt; EndSeqUpdates;
+      JSONString -&gt; EndSeqUpdates;
     } UpdatesGraph;
 
     object-map {
-      EndSeq -&gt; UpdateItemMeta;
+      JSONString -&gt; UpdateItemMeta;
     } EndSeqUpdates;
 
     object {
@@ -2499,6 +2506,16 @@ Client                                  TIPS
       JSONString    tag;
       JSONNumber    size;
     } UpdateItemMeta;
+
+    object {
+      Boolean     server-push;
+      NextEdge    next-edge;
+    } PushState;
+
+    object {
+      JSONNumber       seq-i;
+      JSONNumber       seq-j;
+    } NextEdge;
 
 </pre><a href="#section-5.2-3" class="pilcrow">¶</a>
 </div>
@@ -2514,7 +2531,16 @@ Client                                  TIPS
           <dd style="margin-left: 1.5em" id="section-5.2-5.4">
             <p id="section-5.2-5.4.1">Contains a map of edges in the updates graph (start-seq to end-seq).  Each
               edge has a corresponding update-item-meta which includes the edge's
-              media type, resource version tag, and size of the content in kilobytes.<a href="#section-5.2-5.4.1" class="pilcrow">¶</a></p>
+              media type, resource version tag, and size of the content in kilobytes.
+              Note that two different edges will share the same resource version tag
+              if they connect to the same end-seq node in the graph.<a href="#section-5.2-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-5.5">push-state: </dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-5.6">
+            <p id="section-5.2-5.6.1">Contains server-push boolean which is set to TRUE if the client has indicated server
+              push.  Otherwise, it is set to FALSE.  push-state also contains next-edge which indicates
+              the next edge that will be pushed to the client. If server-push is FALSE, next-edge is NULL.<a href="#section-5.2-5.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -2527,42 +2553,62 @@ Client                                  TIPS
         </h3>
 <div class="alignLeft art-text artwork" id="section-5.3-1">
 <pre>
-   GET /tips/2718281828459/ug HTTP/1.1
+   GET /tips/2718281828459 HTTP/1.1
    Host: alto.example.com
-   Accept: application/alto-tipsgraph+json, application/alto-error+json
+   Accept: application/alto-tipsview+json, application/alto-error+json
    Authorization: Basic Y2xpZW50MTpoZWxsb2FsdG8K
 
 
    HTTP/1.1 200 OK
-   Content-Type: application/alto-tipsgraph+json
-   Content-Length: 488
+   Content-Type: application/alto-tipsview+json
+   Content-Length: 1237
 
    {
       "meta": {
-        "resource-id": "2718281828459"
+        "resource-id": "2718281828459",
         "tag": 125351264356
       },
       "updates-graph": {
-        0: {
-          101: {alto-costmap+json, 10978342, 1000000},
-          103: {alto-costmap+json, 12340088, 1004000},
-          105: {alto-costmap+json, 12356783, 1008033}
+        "0": {
+          "101": {
+            "media-type": "alto-costmap+json",
+            "tag": "109783421097", "size": 1000000 },
+          "103": {
+            "media-type": "alto-costmap+json",
+            "tag": "123400881080", "size": 1004000 },
+          "105": {
+            "media-type": "alto-costmap+json",
+            "tag": "123567838392", "size": 1008033 }
         },
-        101: {
-          102: {application/merge-patch+json, 12356643, 4040}
+        "101": {
+          "102": {
+            "media-type": "application/merge-patch+json",
+            "tag": "123566431234", "size": 4040}
         },
-        102: {
-          103: {application/merge-patch+json, 12356644, 3000}
+        "102": {
+          "103": {
+            "media-type": "application/merge-patch+json",
+            "tag": "123400881080", "size": 3000}
         },
-        103: {
-          104: {application/merge-patch+json, 12356645, 8000}
+        "103": {
+           "104": {
+             "media-type": "application/merge-patch+json",
+             "tag": "123566452654", "size": 8000}
         },
-        104: {
-          105: {application/merge-patch+json, 12356646, 10000}
+        "104": {
+          "105": {
+            "media-type": "application/merge-patch+json",
+            "tag": "123567838392", "size": 10000}
         },
-        105: {
-          106: {application/merge-patch+json, 12356647, 4040}
+        "105": {
+          "106": {
+            "media-type": "application/merge-patch+json",
+            "tag": "123566470983", "size": 4040}
         }
+      },
+      "push-state": {
+        "server-push": false,
+        "next-edge": null
       }
    }
 </pre><a href="#section-5.3-1" class="pilcrow">¶</a>
@@ -2581,22 +2627,23 @@ Client                                  TIPS
           <h4 id="name-request-2">
 <a href="#section-5.4.1" class="section-number selfRef">5.4.1. </a><a href="#name-request-2" class="section-name selfRef">Request</a>
           </h4>
-<p id="section-5.4.1-1">An ALTO client requests the updates graph's metadata directory
+<p id="section-5.4.1-1">An ALTO client requests the TIPS view metadata directory
         by sending an HTTP GET request with the media type
-        "application/alto-tipsgraph+json".  The GET request looks like:<a href="#section-5.4.1-1" class="pilcrow">¶</a></p>
+        "application/alto-tipsview+json" and the version tag of the
+        TIPS view directory it has currently.  The GET request looks like:<a href="#section-5.4.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.4.1-2">
 <pre>
-    POST /tips/2718281828459/ug HTTP/1.1
+    POST /tips/2718281828459 HTTP/1.1
     Host: alto.example.com
-    Accept: application/alto-tipsgraph+json,
+    Accept: application/alto-tipsview+json,
             application/merge-patch+json,
             application/alto-error+json
     Authorization: Basic Y2xpZW50MTpoZWxsb2FsdG8K
     Content-Type: application/alto-tipsparams+json
-    Content-Length: 41
+    Content-Length: 43
 
     {
-      "tag": 125351264356
+      "tag": "125351264356"
     }
 </pre><a href="#section-5.4.1-2" class="pilcrow">¶</a>
 </div>
@@ -2614,19 +2661,19 @@ Client                                  TIPS
 
     HTTP/1.1 200 OK
     Content-Type: application/merge-patch+json
-    Content-Length: 200
+    Content-Length: 212
 
     {
       "meta": {
-        "tag": 543353364839
+        "tag": "543353364839"
       },
       "updates-map": {
-        0: {
-          101: null,
-          107: {...}
+        "0": {
+          "101": null,
+          "107": {...}
         },
-        101: null,
-        102: null
+        "101": null,
+        "102": null
       }
     }
 </pre><a href="#section-5.4.2-2" class="pilcrow">¶</a>
@@ -2792,7 +2839,7 @@ Client                                  TIPS
 <p id="section-7.1.1-1">A client can add itself explicitly to the receiver set or add itself to the receiver set when
             requesting the TIPS view.<a href="#section-7.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-7.1.1-2">Explicit add: A client can explicitly add itself in the receiver set by using the HTTP PUT method with media type
-            "application/alto-tipspush+json", where the
+            "application/alto-tipsview+json", where the
             client may optionally specify a starting edge (next-edge) from which it would like to receive updates:<a href="#section-7.1.1-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-7.1.1-3">
 <pre>
@@ -2801,19 +2848,34 @@ Client                                  TIPS
     object {
       Boolean     server-push;
       [NextEdge    next-edge;]
-    } PushState
+    } PushState;
 
     object {
       JSONNumber       seq-i;
       JSONNumber       seq-j;
-    } NextEdge
+    } NextEdge;
 </pre><a href="#section-7.1.1-3" class="pilcrow">¶</a>
 </div>
-<p id="section-7.1.1-4">Short cut add: When requesting a TIPS view, an ALTO client can
+<p id="section-7.1.1-4">with the following fields:<a href="#section-7.1.1-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-7.1.1-5">
+            <dt id="section-7.1.1-5.1">server-push: </dt>
+            <dd style="margin-left: 1.5em" id="section-7.1.1-5.2">
+              <p id="section-7.1.1-5.2.1">Set to true if the client desires to receive server push updates.<a href="#section-7.1.1-5.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-7.1.1-5.3">next-edge: </dt>
+            <dd style="margin-left: 1.5em" id="section-7.1.1-5.4">
+              <p id="section-7.1.1-5.4.1">Optional field to request a starting edge to be pushed if the client has pulled the
+              updates graph directory and has calculated the path it desires to take.  The server is
+              MAY push this edge first if available.<a href="#section-7.1.1-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<p id="section-7.1.1-6">Short cut add: When requesting a TIPS view, an ALTO client can
           start server push by setting the option "server-push" field to be true using the HTTP POST method
-          defined in <a href="#tips-createreq" class="auto internal xref">Section 4.1</a>.<a href="#section-7.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-7.1.1-5">Example of a client requesting a TIPS view and starting server push:<a href="#section-7.1.1-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-7.1.1-6">
+          defined in <a href="#tips-createreq" class="auto internal xref">Section 4.1</a>.<a href="#section-7.1.1-6" class="pilcrow">¶</a></p>
+<p id="section-7.1.1-7">Example of a client requesting a TIPS view and starting server push:<a href="#section-7.1.1-7" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7.1.1-8">
 <pre>
     Client -&gt; server request
 
@@ -2862,7 +2924,7 @@ Client                                  TIPS
         }
       }
 
-</pre><a href="#section-7.1.1-6" class="pilcrow">¶</a>
+</pre><a href="#section-7.1.1-8" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -2871,10 +2933,8 @@ Client                                  TIPS
           <h4 id="name-read-push-state">
 <a href="#section-7.1.2" class="section-number selfRef">7.1.2. </a><a href="#name-read-push-state" class="section-name selfRef">Read Push State</a>
           </h4>
-<p id="section-7.1.2-1">A client can use the HTTP GET method, with accept header set to "application/alto-tipspush+json"
-          (defined in <a href="#push-start" class="auto internal xref">Section 7.1.1</a>) to check the status of server push.
-          Note that a server SHOULD send next-edge
-          to inform the client which item will be pushed next.<a href="#section-7.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-7.1.2-1">A client can use the HTTP GET method, with accept header set to "application/alto-tipsview+json"
+          (defined in <a href="#push-start" class="auto internal xref">Section 7.1.1</a>) to check the status of server push.<a href="#section-7.1.2-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-7.1.2-2">
 <pre>
     GET /&lt;tips-view-uri&gt;/push
@@ -2893,7 +2953,7 @@ Client                                  TIPS
         :path = /tips/2718281828459/push
         host = alto.example.com
         accept = application/alto-error+json,
-                      application/alto-tipspush+json
+                      application/alto-tipsview+json
 
     Server -&gt; client response:
 
@@ -2901,7 +2961,7 @@ Client                                  TIPS
       - END_STREAM
       + END_HEADERS
         :status = 200
-        content-type = application/alto-tipspush+json
+        content-type = application/alto-tipsview+json
         content-length = 519
 
     DATA
@@ -2926,7 +2986,7 @@ Client                                  TIPS
             implicitly.<a href="#section-7.1.3-1" class="pilcrow">¶</a></p>
 <p id="section-7.1.3-2">Explicit stop: A client stops push by using the HTTP PUT method to
           /&lt;tips-view-uri&gt;/push, with content type
-          "application/alto-tipspush+json" and setting server-push to FALSE:<a href="#section-7.1.3-2" class="pilcrow">¶</a></p>
+          "application/alto-tipsview+json" and setting server-push to FALSE:<a href="#section-7.1.3-2" class="pilcrow">¶</a></p>
 <p id="section-7.1.3-3">Implicit stop: (1) TIPS view is connection ephemeral: the close of connection or
           stream for the TIPS view deletes the TIPS view from the view of the client. (2) The client
           sends a DELETE /&lt;tips-view-uri&gt; request, indicating it no longer is interested
@@ -2948,7 +3008,7 @@ Client                                  TIPS
         :path = /tips/2718281828459/push
         host = alto.example.com
         accept = application/alto-error+json
-        content-type = application/alto-tipspush+json
+        content-type = application/alto-tipsview+json
         content-length = 69
 
     DATA
@@ -2980,7 +3040,7 @@ Client                                  TIPS
 <a href="#section-7.2.1" class="section-number selfRef">7.2.1. </a><a href="#name-server-push" class="section-name selfRef">Server Push</a>
           </h4>
 <p id="section-7.2.1-1">The objective of the server is to push the latest version to the client using
-          the lowest cost (sum of size) of the updates. Hence, it is recommended that the
+          the lowest cost (sum of size) of the updates. Hence, it is RECOMMENDED that the
           server computes the push path using the following algorithm, upon each event computing a push:<a href="#section-7.2.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-7.2.1-2.1">Compute client current version (n_c). During initialization, if the TIPS view request
@@ -2996,7 +3056,7 @@ Client                                  TIPS
 <ul class="normal">
 <li class="normal" id="section-7.2.1-4.1">Initialization: the client MUST set SETTINGS_ENABLE_PUSH to be
               consistent.  If the client specifically requests a starting edge to be pushed, the server
-              SHOULD start with that edge, even if it is not the shortest path.<a href="#section-7.2.1-4.1" class="pilcrow">¶</a>
+              MAY start with that edge, even if it is not the shortest path.<a href="#section-7.2.1-4.1" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-7.2.1-4.2">Push state: the server MUST maintain the last entry pushed to the client (and hence
             per client, per connection state) and schedule next update push accordingly.<a href="#section-7.2.1-4.2" class="pilcrow">¶</a>
@@ -3394,9 +3454,7 @@ Client                                  TIPS
 </li>
         <li class="normal" id="section-10-2.2">application/alto-tipsparams+json: as described in <a href="#tips-createreq" class="auto internal xref">Section 4.1</a>;<a href="#section-10-2.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-10-2.3">application/alto-tipsgraph+json: as described in <a href="#dir-resp" class="auto internal xref">Section 5.2</a><a href="#section-10-2.3" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-10-2.4">application/alto-tipspush+json: as described in <a href="#push-start" class="auto internal xref">Section 7.1.1</a><a href="#section-10-2.4" class="pilcrow">¶</a>
+        <li class="normal" id="section-10-2.3">application/alto-tipsview+json: as described in <a href="#dir-resp" class="auto internal xref">Section 5.2</a><a href="#section-10-2.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <section id="section-10.1">
@@ -3594,8 +3652,8 @@ Client                                  TIPS
 </dl>
 </section>
 <section id="section-10.3">
-        <h3 id="name-application-alto-tipsgraphj">
-<a href="#section-10.3" class="section-number selfRef">10.3. </a><a href="#name-application-alto-tipsgraphj" class="section-name selfRef">application/alto-tipsgraph+json Media Type</a>
+        <h3 id="name-application-alto-tipsviewjs">
+<a href="#section-10.3" class="section-number selfRef">10.3. </a><a href="#name-application-alto-tipsviewjs" class="section-name selfRef">application/alto-tipsview+json Media Type</a>
         </h3>
 <span class="break"></span><dl class="dlParallel" id="section-10.3-1">
           <dt id="section-10.3-1.1">Type name:</dt>
@@ -3603,7 +3661,7 @@ Client                                  TIPS
 </dd>
           <dd class="break"></dd>
 <dt id="section-10.3-1.3">Subtype name:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.3-1.4">alto-tipsgraph+json<a href="#section-10.3-1.4" class="pilcrow">¶</a>
+          <dd style="margin-left: 1.5em" id="section-10.3-1.4">alto-tipsview+json<a href="#section-10.3-1.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-10.3-1.5">Required parameters:</dt>
@@ -3686,103 +3744,6 @@ Client                                  TIPS
           <dd class="break"></dd>
 <dt id="section-10.3-1.31">Change controller:</dt>
           <dd style="margin-left: 1.5em" id="section-10.3-1.32">Internet Engineering Task Force (mailto:iesg@ietf.org).<a href="#section-10.3-1.32" class="pilcrow">¶</a>
-</dd>
-        <dd class="break"></dd>
-</dl>
-</section>
-<section id="section-10.4">
-        <h3 id="name-application-alto-tipspushjs">
-<a href="#section-10.4" class="section-number selfRef">10.4. </a><a href="#name-application-alto-tipspushjs" class="section-name selfRef">application/alto-tipspush+json Media Type</a>
-        </h3>
-<span class="break"></span><dl class="dlParallel" id="section-10.4-1">
-          <dt id="section-10.4-1.1">Type name:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.2">application<a href="#section-10.4-1.2" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.3">Subtype name:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.4">alto-tipspush+json<a href="#section-10.4-1.4" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.5">Required parameters:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.6">N/A<a href="#section-10.4-1.6" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.7">Optional parameters:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.8">N/A<a href="#section-10.4-1.8" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.9">Encoding considerations:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.10">Encoding considerations are identical to those specified for the
-          "application/json" media type. See <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span>.<a href="#section-10.4-1.10" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.11">Security considerations:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.12">Security considerations relating to the generation and consumption
-          of ALTO Protocol messages are discussed in Section 10 of
-          <span>[<a href="#RFC8895" class="cite xref">RFC8895</a>]</span> and Section 15 of <span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span>.<a href="#section-10.4-1.12" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.13">Interoperability considerations:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.14">This document specifies format of conforming messages and the
-          interpretation thereof.<a href="#section-10.4-1.14" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.15">Published specification:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.16">
-            <a href="#push-start" class="auto internal xref">Section 7.1.1</a> of this document.<a href="#section-10.4-1.16" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.17">Applications that use this media type:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.18">ALTO servers and ALTO clients either stand alone or are embedded
-          within other applications.<a href="#section-10.4-1.18" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.19">Fragment identifier considerations:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.20">N/A<a href="#section-10.4-1.20" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.21">Additional information:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.22">
-            <p id="section-10.4-1.22.1"><br></p>
-<span class="break"></span><dl class="dlParallel" id="section-10.4-1.22.2">
-              <dt id="section-10.4-1.22.2.1">Deprecated alias names for this type:</dt>
-              <dd style="margin-left: 1.5em" id="section-10.4-1.22.2.2">N/A<a href="#section-10.4-1.22.2.2" class="pilcrow">¶</a>
-</dd>
-              <dd class="break"></dd>
-<dt id="section-10.4-1.22.2.3">Magic number(s):</dt>
-              <dd style="margin-left: 1.5em" id="section-10.4-1.22.2.4">N/A<a href="#section-10.4-1.22.2.4" class="pilcrow">¶</a>
-</dd>
-              <dd class="break"></dd>
-<dt id="section-10.4-1.22.2.5">File extension(s):</dt>
-              <dd style="margin-left: 1.5em" id="section-10.4-1.22.2.6">This document uses the media type to refer to protocol messages
-              and thus does not require a file extension.<a href="#section-10.4-1.22.2.6" class="pilcrow">¶</a>
-</dd>
-              <dd class="break"></dd>
-<dt id="section-10.4-1.22.2.7">Macintosh file type code(s):</dt>
-              <dd style="margin-left: 1.5em" id="section-10.4-1.22.2.8">N/A<a href="#section-10.4-1.22.2.8" class="pilcrow">¶</a>
-</dd>
-            <dd class="break"></dd>
-</dl>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.23">Person and email address to contact for further information:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.24">See Authors' Addresses section.<a href="#section-10.4-1.24" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.25">Intended usage:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.26">COMMON<a href="#section-10.4-1.26" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.27">Restrictions on usage:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.28">N/A<a href="#section-10.4-1.28" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.29">Author:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.30">See Authors' Addresses section.<a href="#section-10.4-1.30" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-10.4-1.31">Change controller:</dt>
-          <dd style="margin-left: 1.5em" id="section-10.4-1.32">Internet Engineering Task Force (mailto:iesg@ietf.org).<a href="#section-10.4-1.32" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 </dl>

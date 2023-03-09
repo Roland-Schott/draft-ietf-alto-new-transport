@@ -5,13 +5,13 @@
 ALTO Working Group                                             R. Schott
 Internet-Draft                                          Deutsche Telekom
 Intended status: Standards Track                                 Y. Yang
-Expires: 29 August 2023                                  Yale University
+Expires: 3 September 2023                                Yale University
                                                                   K. Gao
                                                       Sichuan University
                                                              L. Delwiche
                                                                L. Keller
                                                          Yale University
-                                                        25 February 2023
+                                                            2 March 2023
 
 
              ALTO Transport Information Publication Service
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 August 2023.
+   This Internet-Draft will expire on 3 September 2023.
 
 Copyright Notice
 
@@ -78,8 +78,8 @@ Table of Contents
      1.1.  Requirements Language
      1.2.  Notations
    2.  TIPS Overview
-     2.1.  Basic Data Model: Incremental Representation State Transfer
-           (iREST)
+     2.1.  Basic Data Model: Incremental Representational State
+           Transfer (iREST)
        2.1.1.  iREST Resource Location Schema
      2.2.  High-level Service Model
      2.3.  TIPS Terminology
@@ -133,8 +133,7 @@ Table of Contents
    10. IANA Considerations
      10.1.  application/alto-tips+json Media Type
      10.2.  application/alto-tipsparams+json Media Type
-     10.3.  application/alto-tipsgraph+json Media Type
-     10.4.  application/alto-tipspush+json Media Type
+     10.3.  application/alto-tipsview+json Media Type
    11. Acknowledgments
    12. References
      12.1.  Normative References
@@ -213,7 +212,7 @@ Table of Contents
 
 2.  TIPS Overview
 
-2.1.  Basic Data Model: Incremental Representation State Transfer
+2.1.  Basic Data Model: Incremental Representational State Transfer
       (iREST)
 
    For each resource (e.g., a cost map, network map), the incremental
@@ -241,46 +240,46 @@ Table of Contents
    directly fetched as a snapshot or computed incrementally by applying
    the incremental updates between 103 and 104, then 104 and 105.
 
-                                            +======+
-                                            |  0   |
-                                            +======+
-                                            /   |  \
-                                  ID0-101  /    |   |
-                                          /     |   |
-                                        |/__    |   |
-                                  +======+      |   |
-                      tag: 1.1 -> | 101  |      |   |
-                                  +======+      |   |
-                                     ||         |   |
-                          ID101-102  ||         |   |
-                                     \/         |   |
-                                  +======+      |   |
-                      tag: 1.5 -> | 102  |      |   |
-                                  +======+      |   |
-                                     ||         |   |
-                          ID102-103  ||  ID0-103|   |
-                                     \/         |   |
-                                  +======+      /   |
-  +---------------+   tag: 2.0 -> | 103  |<----/    |
-  | Base Resource |  =====>       +======+          |
-  +---------------+                  ||             |
-                          ID103-104  ||             |
-                                     \/             |
-                                  +======+          |
-                      tag: 3.0 -> | 104  |          |
-                                  +======+          |
-                                     ||             | ID0-105
-                          ID104-105  ||             |
-                                     \/             /
-                                  +======+         /
-                      tag: 3.3 -> | 105  |<-------/
-                                  +======+
-                                     ||
-                          ID105-106  ||
-                                     \/
-                                  +======+
-                      tag: 3.7 -> | 106  |
-                                  +======+
+                                                    +======+
+                                                    |  0   |
+                                                    +======+
+                                                    /   |  \
+                                          ID0-101  /    |   |
+                                                  /     |   |
+                                                |/__    |   |
+                                          +======+      |   |
+                     tag: 109783421097 -> | 101  |      |   |
+                                          +======+      |   |
+                                             ||         |   |
+                                  ID101-102  ||         |   |
+                                             \/         |   |
+                                          +======+      |   |
+                     tag: 123566431234 -> | 102  |      |   |
+                                          +======+      |   |
+                                             ||         |   |
+                                  ID102-103  ||  ID0-103|   |
+                                             \/         |   |
+                                          +======+      /   |
+                     tag: 123400881080 -> | 103  |<----/    |
+  +---------------+                       +======+          |
+  | Base Resource |  =====>                  ||             |
+  +---------------+               ID103-104  ||             |
+                                             \/             |
+                                          +======+          |
+                     tag: 123566452654 -> | 104  |          |
+                                          +======+          |
+                                             ||             | ID0-105
+                                  ID104-105  ||             |
+                                             \/             /
+                                          +======+         /
+                     tag: 123567838392 -> | 105  |<-------/
+                                          +======+
+                                             ||
+                                  ID105-106  ||
+                                             \/
+                                          +======+
+                     tag: 123566470983 -> | 106  |
+                                          +======+
 
             tag: denotes the version of the resource at node i
             ID###-###: denotes update item (op, data) to transition from
@@ -310,6 +309,8 @@ Table of Contents
                      105
                  105
                      106
+             push           // server push metadata
+               ...
 
 
          Location -> resource naming (ID assignment)
@@ -630,8 +631,9 @@ tvi/rs = receiver set of tvi (for server push)
 
    support-server-push:  The "support-server-push" field specifies
       whether the given TIPS supports server push.  If the "support-
-      server-push" field is "true", this TIPS will allow a client to
-      start or stop server push.
+      server-push" field is TRUE, this TIPS will allow a client to start
+      or stop server push.  If the field is FALSE or not present, this
+      TIPS does not provide server push.
 
 3.3.  Uses
 
@@ -839,7 +841,8 @@ tvi/rs = receiver set of tvi (for server push)
       the parameters that the resource expects.
 
    server-push:  Set to TRUE if a client desires to receive updates via
-      server push.
+      server push.  If the value is FALSE or not present, the client
+      does not accept server push updates.
 
 4.2.  Open Response
 
@@ -882,12 +885,13 @@ tvi/rs = receiver set of tvi (for server push)
       However, the exact mechanism is left to the TIPS provider.
 
    tips-view-summary:  Contains both an updates-graph-summary and an
-      optional server-push boolean value which is set to TRUE if the
-      client indicated server push
+      optional server-push boolean value which is set to TRUE if and
+      only if the client indicates server push.
 
-      updates-graph-summary provides the starting sequence number of the
-      updates graph and the last sequence number (current available),
-      along with a recommended edge to consume.  How the server
+      The updates-graph-summary field contains the starting sequence
+      number (start-seq) of the updates graph and the last sequence
+      number (end-seq) that is currently available, along with a
+      recommended edge to consume (start-edge-rec).  How the server
       calculates the recommended edge depends on the implementation.
       Ideally, if the client does not provide a version tag, the server
       should recommend the edge of the latest snapshot available.  If
@@ -897,7 +901,7 @@ tvi/rs = receiver set of tvi (for server push)
       snapshot.  If the snapshot is bigger, the server should recommend
       the first patch update edge starting from client's tagged version.
       Else, the server should recommend the latest snapshot edge.  If
-      the client indicated server push, the recommended edge will be the
+      the client indicates server push, the recommended edge will be the
       first content pushed.
 
    If the request has any errors, the TIPS service MUST return an HTTP
@@ -1005,16 +1009,21 @@ tvi/rs = receiver set of tvi (for server push)
 
 5.  TIPS View Metadata Directory
 
-   An ALTO client can read the metadata directory of the updates graph
-   to understand its full contents beyond the intial summary provided
-   (perhaps to calculate a new shortest path to the end of the graph
-   after not having fetched for a period of time).
+   An ALTO client can read the metadata directory of the TIPS view to
+   understand its full contents beyond the intial summary provided.
 
 5.1.  Request
 
    An ALTO client requests the updates graph's metadata directory by
    sending an HTTP GET request with the media type "application/alto-
-   tipsgraph+json".  The GET request looks like:
+   tipsview+json".  The GET request looks like:
+
+       GET /<tips-view-uri>
+
+   An ALTO client can also read the metadata directory of just the the
+   updates graph (perhaps to calculate a new shortest path to the end of
+   the graph after not having fetched for a period of time).  The HTTP
+   method is a GET, and looks like:
 
        GET /<tips-view-uri>/ug
 
@@ -1029,25 +1038,27 @@ tvi/rs = receiver set of tvi (for server push)
    message with status code 404 (Not Found) and media type "application/
    alto-error+json".
 
-   The response from the server, if no error, is the UpdatesGraph object
-   indicated as "application/alto-tipsgraph+json" media type:
+   The response from the server, if no error, for the entire metadata
+   directory of the TIPS view is the UpdatesDirectory object indicated
+   as "application/alto-tipsview+json" media type:
 
        object {
          GraphDirMeta   meta;
          UpdatesGraph   updates-graph;
+         PushState      push-state;
        } UpdatesDirectory : ResponseEntityBase;
 
        object {
          ResourceID     resource-id;
          Tag            tag;
-       } GraphDirMeta
+       } GraphDirMeta;
 
        object-map {
-         StartSeq -> EndSeqUpdates;
+         JSONString -> EndSeqUpdates;
        } UpdatesGraph;
 
        object-map {
-         EndSeq -> UpdateItemMeta;
+         JSONString -> UpdateItemMeta;
        } EndSeqUpdates;
 
        object {
@@ -1055,6 +1066,16 @@ tvi/rs = receiver set of tvi (for server push)
          JSONString    tag;
          JSONNumber    size;
        } UpdateItemMeta;
+
+       object {
+         Boolean     server-push;
+         NextEdge    next-edge;
+       } PushState;
+
+       object {
+         JSONNumber       seq-i;
+         JSONNumber       seq-j;
+       } NextEdge;
 
 
    with the following fields:
@@ -1065,48 +1086,76 @@ tvi/rs = receiver set of tvi (for server push)
    updates-graph:  Contains a map of edges in the updates graph (start-
       seq to end-seq).  Each edge has a corresponding update-item-meta
       which includes the edge's media type, resource version tag, and
-      size of the content in kilobytes.
+      size of the content in kilobytes.  Note that two different edges
+      will share the same resource version tag if they connect to the
+      same end-seq node in the graph.
+
+   push-state:  Contains server-push boolean which is set to TRUE if the
+      client has indicated server push.  Otherwise, it is set to FALSE.
+      push-state also contains next-edge which indicates the next edge
+      that will be pushed to the client.  If server-push is FALSE, next-
+      edge is NULL.
 
 5.3.  Example
 
-    GET /tips/2718281828459/ug HTTP/1.1
-    Host: alto.example.com
-    Accept: application/alto-tipsgraph+json, application/alto-error+json
-    Authorization: Basic Y2xpZW50MTpoZWxsb2FsdG8K
+     GET /tips/2718281828459 HTTP/1.1
+     Host: alto.example.com
+     Accept: application/alto-tipsview+json, application/alto-error+json
+     Authorization: Basic Y2xpZW50MTpoZWxsb2FsdG8K
 
 
-    HTTP/1.1 200 OK
-    Content-Type: application/alto-tipsgraph+json
-    Content-Length: 488
+     HTTP/1.1 200 OK
+     Content-Type: application/alto-tipsview+json
+     Content-Length: 1237
 
-    {
-       "meta": {
-         "resource-id": "2718281828459"
-         "tag": 125351264356
-       },
-       "updates-graph": {
-         0: {
-           101: {alto-costmap+json, 10978342, 1000000},
-           103: {alto-costmap+json, 12340088, 1004000},
-           105: {alto-costmap+json, 12356783, 1008033}
-         },
-         101: {
-           102: {application/merge-patch+json, 12356643, 4040}
-         },
-         102: {
-           103: {application/merge-patch+json, 12356644, 3000}
-         },
-         103: {
-           104: {application/merge-patch+json, 12356645, 8000}
-         },
-         104: {
-           105: {application/merge-patch+json, 12356646, 10000}
-         },
-         105: {
-           106: {application/merge-patch+json, 12356647, 4040}
-         }
-       }
-    }
+     {
+        "meta": {
+          "resource-id": "2718281828459",
+          "tag": 125351264356
+        },
+        "updates-graph": {
+          "0": {
+            "101": {
+              "media-type": "alto-costmap+json",
+              "tag": "109783421097", "size": 1000000 },
+            "103": {
+              "media-type": "alto-costmap+json",
+              "tag": "123400881080", "size": 1004000 },
+            "105": {
+              "media-type": "alto-costmap+json",
+              "tag": "123567838392", "size": 1008033 }
+          },
+          "101": {
+            "102": {
+              "media-type": "application/merge-patch+json",
+              "tag": "123566431234", "size": 4040}
+          },
+          "102": {
+            "103": {
+              "media-type": "application/merge-patch+json",
+              "tag": "123400881080", "size": 3000}
+          },
+          "103": {
+             "104": {
+               "media-type": "application/merge-patch+json",
+               "tag": "123566452654", "size": 8000}
+          },
+          "104": {
+            "105": {
+              "media-type": "application/merge-patch+json",
+              "tag": "123567838392", "size": 10000}
+          },
+          "105": {
+            "106": {
+              "media-type": "application/merge-patch+json",
+              "tag": "123566470983", "size": 4040}
+          }
+        },
+        "push-state": {
+          "server-push": false,
+          "next-edge": null
+        }
+     }
 
 5.4.  Refresh Directory
 
@@ -1115,21 +1164,22 @@ tvi/rs = receiver set of tvi (for server push)
 
 5.4.1.  Request
 
-   An ALTO client requests the updates graph's metadata directory by
-   sending an HTTP GET request with the media type "application/alto-
-   tipsgraph+json".  The GET request looks like:
+   An ALTO client requests the TIPS view metadata directory by sending
+   an HTTP GET request with the media type "application/alto-
+   tipsview+json" and the version tag of the TIPS view directory it has
+   currently.  The GET request looks like:
 
-       POST /tips/2718281828459/ug HTTP/1.1
+       POST /tips/2718281828459 HTTP/1.1
        Host: alto.example.com
-       Accept: application/alto-tipsgraph+json,
+       Accept: application/alto-tipsview+json,
                application/merge-patch+json,
                application/alto-error+json
        Authorization: Basic Y2xpZW50MTpoZWxsb2FsdG8K
        Content-Type: application/alto-tipsparams+json
-       Content-Length: 41
+       Content-Length: 43
 
        {
-         "tag": 125351264356
+         "tag": "125351264356"
        }
 
 5.4.2.  Response
@@ -1139,19 +1189,19 @@ tvi/rs = receiver set of tvi (for server push)
 
        HTTP/1.1 200 OK
        Content-Type: application/merge-patch+json
-       Content-Length: 200
+       Content-Length: 212
 
        {
          "meta": {
-           "tag": 543353364839
+           "tag": "543353364839"
          },
          "updates-map": {
-           0: {
-             101: null,
-             107: {...}
+           "0": {
+             "101": null,
+             "107": {...}
            },
-           101: null,
-           102: null
+           "101": null,
+           "102": null
          }
        }
 
@@ -1290,7 +1340,7 @@ tvi/rs = receiver set of tvi (for server push)
 
    Explicit add: A client can explicitly add itself in the receiver set
    by using the HTTP PUT method with media type "application/alto-
-   tipspush+json", where the client may optionally specify a starting
+   tipsview+json", where the client may optionally specify a starting
    edge (next-edge) from which it would like to receive updates:
 
        PUT /<tips-view-uri>/push
@@ -1298,12 +1348,22 @@ tvi/rs = receiver set of tvi (for server push)
        object {
          Boolean     server-push;
          [NextEdge    next-edge;]
-       } PushState
+       } PushState;
 
        object {
          JSONNumber       seq-i;
          JSONNumber       seq-j;
-       } NextEdge
+       } NextEdge;
+
+   with the following fields:
+
+   server-push:  Set to true if the client desires to receive server
+      push updates.
+
+   next-edge:  Optional field to request a starting edge to be pushed if
+      the client has pulled the updates graph directory and has
+      calculated the path it desires to take.  The server is MAY push
+      this edge first if available.
 
    Short cut add: When requesting a TIPS view, an ALTO client can start
    server push by setting the option "server-push" field to be true
@@ -1362,9 +1422,8 @@ tvi/rs = receiver set of tvi (for server push)
 7.1.2.  Read Push State
 
    A client can use the HTTP GET method, with accept header set to
-   "application/alto-tipspush+json" (defined in Section 7.1.1) to check
-   the status of server push.  Note that a server SHOULD send next-edge
-   to inform the client which item will be pushed next.
+   "application/alto-tipsview+json" (defined in Section 7.1.1) to check
+   the status of server push.
 
        GET /<tips-view-uri>/push
 
@@ -1380,7 +1439,7 @@ tvi/rs = receiver set of tvi (for server push)
            :path = /tips/2718281828459/push
            host = alto.example.com
            accept = application/alto-error+json,
-                         application/alto-tipspush+json
+                         application/alto-tipsview+json
 
        Server -> client response:
 
@@ -1388,7 +1447,7 @@ tvi/rs = receiver set of tvi (for server push)
          - END_STREAM
          + END_HEADERS
            :status = 200
-           content-type = application/alto-tipspush+json
+           content-type = application/alto-tipsview+json
            content-length = 519
 
        DATA
@@ -1408,7 +1467,7 @@ tvi/rs = receiver set of tvi (for server push)
 
    Explicit stop: A client stops push by using the HTTP PUT method to
    /<tips-view-uri>/push, with content type "application/alto-
-   tipspush+json" and setting server-push to FALSE:
+   tipsview+json" and setting server-push to FALSE:
 
    Implicit stop: (1) TIPS view is connection ephemeral: the close of
    connection or stream for the TIPS view deletes the TIPS view from the
@@ -1434,7 +1493,7 @@ tvi/rs = receiver set of tvi (for server push)
            :path = /tips/2718281828459/push
            host = alto.example.com
            accept = application/alto-error+json
-           content-type = application/alto-tipspush+json
+           content-type = application/alto-tipsview+json
            content-length = 69
 
        DATA
@@ -1456,7 +1515,7 @@ tvi/rs = receiver set of tvi (for server push)
 
    The objective of the server is to push the latest version to the
    client using the lowest cost (sum of size) of the updates.  Hence, it
-   is recommended that the server computes the push path using the
+   is RECOMMENDED that the server computes the push path using the
    following algorithm, upon each event computing a push:
 
    *  Compute client current version (n_c).  During initialization, if
@@ -1474,8 +1533,8 @@ tvi/rs = receiver set of tvi (for server push)
 
    *  Initialization: the client MUST set SETTINGS_ENABLE_PUSH to be
       consistent.  If the client specifically requests a starting edge
-      to be pushed, the server SHOULD start with that edge, even if it
-      is not the shortest path.
+      to be pushed, the server MAY start with that edge, even if it is
+      not the shortest path.
 
    *  Push state: the server MUST maintain the last entry pushed to the
       client (and hence per client, per connection state) and schedule
@@ -1815,9 +1874,7 @@ tvi/rs = receiver set of tvi (for server push)
 
    *  application/alto-tipsparams+json: as described in Section 4.1;
 
-   *  application/alto-tipsgraph+json: as described in Section 5.2
-
-   *  application/alto-tipspush+json: as described in Section 7.1.1
+   *  application/alto-tipsview+json: as described in Section 5.2
 
 10.1.  application/alto-tips+json Media Type
 
@@ -1921,11 +1978,11 @@ tvi/rs = receiver set of tvi (for server push)
    Change controller:  Internet Engineering Task Force
       (mailto:iesg@ietf.org).
 
-10.3.  application/alto-tipsgraph+json Media Type
+10.3.  application/alto-tipsview+json Media Type
 
    Type name:  application
 
-   Subtype name:  alto-tipsgraph+json
+   Subtype name:  alto-tipsview+json
 
    Required parameters:  N/A
 
@@ -1943,57 +2000,6 @@ tvi/rs = receiver set of tvi (for server push)
       conforming messages and the interpretation thereof.
 
    Published specification:  Section 5.2 of this document.
-
-   Applications that use this media type:  ALTO servers and ALTO clients
-      either stand alone or are embedded within other applications.
-
-   Fragment identifier considerations:  N/A
-
-   Additional information:
-
-      Deprecated alias names for this type:  N/A
-
-      Magic number(s):  N/A
-
-      File extension(s):  This document uses the media type to refer to
-         protocol messages and thus does not require a file extension.
-
-      Macintosh file type code(s):  N/A
-
-   Person and email address to contact for further information:  See Aut
-      hors' Addresses section.
-
-   Intended usage:  COMMON
-
-   Restrictions on usage:  N/A
-
-   Author:  See Authors' Addresses section.
-
-   Change controller:  Internet Engineering Task Force
-      (mailto:iesg@ietf.org).
-
-10.4.  application/alto-tipspush+json Media Type
-
-   Type name:  application
-
-   Subtype name:  alto-tipspush+json
-
-   Required parameters:  N/A
-
-   Optional parameters:  N/A
-
-   Encoding considerations:  Encoding considerations are identical to
-      those specified for the "application/json" media type.  See
-      [RFC8259].
-
-   Security considerations:  Security considerations relating to the
-      generation and consumption of ALTO Protocol messages are discussed
-      in Section 10 of [RFC8895] and Section 15 of [RFC7285].
-
-   Interoperability considerations:  This document specifies format of
-      conforming messages and the interpretation thereof.
-
-   Published specification:  Section 7.1.1 of this document.
 
    Applications that use this media type:  ALTO servers and ALTO clients
       either stand alone or are embedded within other applications.
