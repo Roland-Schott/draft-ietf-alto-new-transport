@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>ALTO Transport Information Publication Service</title>
+<title>The ALTO Transport Information Publication Service</title>
 <meta content="Roland Schott" name="author">
 <meta content="Y. Richard Yang" name="author">
 <meta content="Kai Gao" name="author">
@@ -12,16 +12,16 @@
 <meta content="Lachlan Keller" name="author">
 <meta content="
        
-      The ALTO protocol (RFC 7285) leverages HTTP/1.x and is designed for the simple,
+      The ALTO Protocol (RFC 7285) leverages HTTP/1.x and is designed for the simple,
       sequential request-reply use case, in which an ALTO client requests a
       sequence of information resources, and the server responds with the complete
       content of each resource one at a time.
        
        
-      ALTO/SSE (RFC 8895) defines a multiplexing protocol on top
-      of HTTP/1.x, so that the server can incrementally push resource updates
-      to the client whenever monitored network information resources change, allowing the
-      client to monitor multiple resources at the same time.
+      ALTO incremental updates using Server-Sent Events (SSE) (RFC 8895) defines a multiplexing protocol on top
+      of HTTP/1.x, so that an ALTO server can incrementally push resource updates
+      to clients whenever monitored network information resources change, allowing the
+      clients to monitor multiple resources at the same time.
       However, HTTP/2 and later versions already support concurrent, non-blocking transport of
       multiple streams in the same HTTP connection.
        
@@ -30,8 +30,7 @@
       Information Publication Service (TIPS).  TIPS uses an incremental RESTful design to
       give an ALTO client the new capability to explicitly, concurrently (non-blocking) request (pull)
       specific incremental updates using native HTTP/2 or HTTP/3, while still
-      functioning for HTTP/1.x.  It also provides an ALTO server the new capability
-      to concurrently push specific incremental updates using native HTTP/2 or HTTP/3
+      functioning for HTTP/1.x.  TIPS also provides an ALTO server to concurrently push specific incremental updates using native HTTP/2 or HTTP/3
       server push.
        
     " name="description">
@@ -1125,19 +1124,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">ALTO Transport Information Publication Service</h1>
+<h1 id="title">The ALTO Transport Information Publication Service</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">
-      The ALTO protocol (RFC 7285) leverages HTTP/1.x and is designed for the simple,
+      The ALTO Protocol (RFC 7285) leverages HTTP/1.x and is designed for the simple,
       sequential request-reply use case, in which an ALTO client requests a
       sequence of information resources, and the server responds with the complete
       content of each resource one at a time.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">
-      ALTO/SSE (RFC 8895) defines a multiplexing protocol on top
-      of HTTP/1.x, so that the server can incrementally push resource updates
-      to the client whenever monitored network information resources change, allowing the
-      client to monitor multiple resources at the same time.
+      ALTO incremental updates using Server-Sent Events (SSE) (RFC 8895) defines a multiplexing protocol on top
+      of HTTP/1.x, so that an ALTO server can incrementally push resource updates
+      to clients whenever monitored network information resources change, allowing the
+      clients to monitor multiple resources at the same time.
       However, HTTP/2 and later versions already support concurrent, non-blocking transport of
       multiple streams in the same HTTP connection.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 <p id="section-abstract-3">
@@ -1145,8 +1144,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       Information Publication Service (TIPS).  TIPS uses an incremental RESTful design to
       give an ALTO client the new capability to explicitly, concurrently (non-blocking) request (pull)
       specific incremental updates using native HTTP/2 or HTTP/3, while still
-      functioning for HTTP/1.x.  It also provides an ALTO server the new capability
-      to concurrently push specific incremental updates using native HTTP/2 or HTTP/3
+      functioning for HTTP/1.x.  TIPS also provides an ALTO server to concurrently push specific incremental updates using native HTTP/2 or HTTP/3
       server push.<a href="#section-abstract-3" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
@@ -1434,19 +1432,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
        two transport protocols have been designed: (1) The ALTO base
        protocol <span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span>, which is designed for the simple use case in
        which an ALTO client requests a network information resource, and the
-       server sends the complete content of the requested information
-       resource to the client; and (2) ALTO/SSE (ALTO Incremental Updates
-       Using Server-Sent Events) <span>[<a href="#RFC8895" class="cite xref">RFC8895</a>]</span>,
-       which is designed for the use case that an ALTO client indicates to the server that it wants to
+       server sends the complete content of the requested information (if any)
+       resource to the client; and (2) ALTO incremental updates
+       using Server-Sent Events (ALTO/SSE) <span>[<a href="#RFC8895" class="cite xref">RFC8895</a>]</span>,
+       which is designed for an ALTO client to indicate to the server that it wants to
        receive updates for a set of resources, and the server can then
-       concurrently, and incrementally push updates to the client whenever
+       concurrently, and incrementally push updates to that client whenever
        monitored resources change.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">Both protocols are designed for HTTP/1.x <span>[<a href="#RFC9112" class="cite xref">RFC9112</a>]</span> and, ideally,
         they should be able to automatically take advantage of newer HTTP
         versions such as HTTP/2 <span>[<a href="#RFC9113" class="cite xref">RFC9113</a>]</span>
         and HTTP/3 <span>[<a href="#RFC9114" class="cite xref">RFC9114</a>]</span>.  However,
-        there are issues with both protocols when HTTP moves to higher versions.
-        First consider the ALTO base protocol, which is designed to transfer
+        there are issues with both protocols when higher HTTP versions are used.
+        First, consider the ALTO base protocol, which is designed to transfer
         only complete information resources.  Hence, a client can run the
         base protocol on top of HTTP/2 or HTTP/3 to request multiple information
         resources concurrently, in concurrent streams, but each request must be
@@ -1464,18 +1462,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
         resource identifier. Additionally, ALTO/SSE is a push-only protocol,
         which denies the client flexibility in choosing how and when it
         receives updates.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document introduces a new ALTO service called the transport
-        information publication service (TIPS).  TIPS uses an incremental RESTful design to
-        give an ALTO client the new capability to explicitly, concurrently (non-blocking) request (pull)
+<p id="section-1-3">This document introduces a new ALTO service called the Transport
+        Information Publication Service (TIPS).  TIPS uses an incremental RESTful design to
+        provide an ALTO client with a new capability to explicitly, concurrently (non-blocking) request (pull)
         specific incremental updates using native HTTP/2 or HTTP/3, while still
-        functioning for HTTP/1.x.  It also provides an ALTO server the new capability
-        to concurrently push specific incremental updates using native HTTP/2 or HTTP/3
-        server push. This document specifies the following:<a href="#section-1-3" class="pilcrow">¶</a></p>
+        functioning for HTTP/1.x.  TIPS also provides an ALTO server to concurrently push specific incremental updates using native HTTP/2 or HTTP/3
+        server push. Specifically, this document specifies the following:<a href="#section-1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1-4.1">ALTO protocol extensions to create/update/remove an incremental representational
-        state transfer resource (iREST);<a href="#section-1-4.1" class="pilcrow">¶</a>
+<li class="normal" id="section-1-4.1">Extensions to the ALTO Protocol to create, update, or remove an incremental representational
+        state transfer resource (iREST).<a href="#section-1-4.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-1-4.2">A new resource type that specifies the iREST graph model for a resource;<a href="#section-1-4.2" class="pilcrow">¶</a>
+        <li class="normal" id="section-1-4.2">A new resource type that specifies the iREST graph model for a resource.<a href="#section-1-4.2" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-1-4.3">URI patterns to fetch the snapshots or incremental updates.<a href="#section-1-4.3" class="pilcrow">¶</a>
 </li>
@@ -1498,8 +1495,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-notations">
 <a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-notations" class="section-name selfRef">Notations</a>
         </h3>
-<p id="section-1.2-1">This document uses the same syntax and notations as introduced in Section 8.2 of
-            RFC 7285 <span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span> to specify the extensions to existing ALTO resources and
+<p id="section-1.2-1">This document uses the same syntax and notations as introduced in Section 8.2 <span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span> to specify the extensions to existing ALTO resources and
             services.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
