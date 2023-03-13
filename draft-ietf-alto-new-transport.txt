@@ -5,13 +5,13 @@
 ALTO Working Group                                             R. Schott
 Internet-Draft                                          Deutsche Telekom
 Intended status: Standards Track                                 Y. Yang
-Expires: 3 September 2023                                Yale University
+Expires: 13 September 2023                               Yale University
                                                                   K. Gao
                                                       Sichuan University
                                                              L. Delwiche
                                                                L. Keller
                                                          Yale University
-                                                            2 March 2023
+                                                           12 March 2023
 
 
              ALTO Transport Information Publication Service
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 September 2023.
+   This Internet-Draft will expire on 13 September 2023.
 
 Copyright Notice
 
@@ -1653,7 +1653,35 @@ tvi/rs = receiver set of tvi (for server push)
 
 8.1.  Considerations for Load Balancing
 
-   TODO
+   TIPS allow clients to make concurrent pulls of the incremental
+   updates potentianlly through different HTTP connections.  As a
+   consequence, it introduces additional complexties when the ALTO
+   server is being load balanced -- a feature widely used to build
+   scalable and fault-tolerant web services.  For example, a request may
+   be incorrectly processed if
+
+   *  the backend servers are stateful, i.e., the TIPS view is created
+      and stored only on a single server;
+
+   *  the ALTO server is using layer-4 load balancing, i.e., the
+      requests are distributed based on the TCP 5-tuple.
+
+   Thus, additional considerations are required to enable correct load
+   balancing for TIPS, including:
+
+   *  Use a stateless architecture: One solution is to follow the
+      stateless computing pattern: states about the TIPS view are not
+      maintained by the backend servers but are stored in a distributed
+      database.  Thus, concurrent requests to the same TIPS view can be
+      processed on arbitrary stateless backend servers, which all
+      fetches data from the same database.
+
+   *  Configure the load balancers properly: In case when the backend
+      servers are stateful, the load balancers must be properly
+      configured to guarantee that requests of the same TIPS view always
+      arrive at the same server.  For example, the ALTO server may
+      configure layer-7 load balancers that distribute requests based on
+      URL or cookies.
 
 8.2.  Considerations for Choosing Updates
 
